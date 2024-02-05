@@ -3,6 +3,7 @@ package coffeemaker;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
@@ -121,5 +122,23 @@ public class RecipeBookTest {
     void editRecipeFail() {
         RecipeBook rb = new RecipeBook();
         assertEquals(null, rb.editRecipe(0, null));
+    }
+
+    @Test
+    void deleteRecipeOutOfBounds() {
+            RecipeBook rb = new RecipeBook();
+            rb.deleteRecipe(5);
+            Recipe[] actual = rb.getRecipes();
+            Recipe[] expected = new Recipe[] {null, null, null, null};
+            assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    void editRecipeOutOfBounds() {
+        RecipeBook rb = new RecipeBook();
+        rb.editRecipe(5, new Recipe());
+        Recipe[] actual = rb.getRecipes();
+        Recipe[] expected = new Recipe[] {null, null, null, null};
+        assertArrayEquals(actual, expected);
     }
 }
