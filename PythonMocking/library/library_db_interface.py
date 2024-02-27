@@ -3,7 +3,7 @@ Filename: library_db_interface.py
 Description: module used for interacting with the local database
 """
 
-from library.patron import Patron
+from PythonMocking.library.patron import Patron
 from tinydb import TinyDB, Query
 import os
 
